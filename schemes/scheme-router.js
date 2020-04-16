@@ -65,7 +65,7 @@ router.post('/:id/steps', (req, res) => {
   Schemes.findById(id)
   .then(scheme => {
     if (scheme) {
-      Schemes.addStep(stepData, id)
+      Schemes.addStep(id, stepData)
       .then(step => {
         res.status(201).json(step);
       })
@@ -77,6 +77,7 @@ router.post('/:id/steps', (req, res) => {
     res.status(500).json({ message: 'Failed to create new step' });
   });
 });
+
 
 router.put('/:id', (req, res) => {
   const { id } = req.params;
